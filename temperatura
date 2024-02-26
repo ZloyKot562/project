@@ -1,0 +1,17 @@
+#Для работы скрипта нужно сначала установить библиотеку Adafruit_DHT, вот этой командой
+#sudo pip3 install Adafruit_DHT
+
+#После загрузки библиоьеки, мы ее импотируем
+import Adafruit_DHT
+
+DHT_SENSOR=Adafruit_DHT.DHT22 #обьявляем переменную DHT_SENSOR и приводим ее к типу Датчика (как то так)
+DHT_PIN=4 #указывае номер GPIO к торому подключен датчик 
+
+while True:
+    hum, tem=Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)  #обьявляем две переменные hum и tem в которые
+                                                           #производим запись считанных данных с датчика
+    
+    if hum is not None and tem is not None:                    #Проверям есть ли какая то информация в переменных hum и tem
+        print("tem={0:0.1f}*C hum={1:0.1f}%".format(tem, hum)) #выводим полученную информацию в отформатированном виде
+    else:
+        print("Error")
